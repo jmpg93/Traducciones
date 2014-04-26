@@ -7,3 +7,13 @@
 //
 
 #include "tAgencia.h"
+
+using namespace::std;
+
+void muestraMenu(){
+    cout << "Bienvenido al sistema de traducciones" << endl;
+    
+    cout << "" << endl;
+    
+    
+}

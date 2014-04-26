@@ -16,6 +16,9 @@
 
 class tAgencia{
 public:
+    tAgencia();
+    ~tAgencia();
+    void muestraMenu();
 private:
     tEmpleado empleados[100];
     tServicio servicios[10];
