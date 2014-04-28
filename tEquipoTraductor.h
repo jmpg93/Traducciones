@@ -17,6 +17,6 @@
 class tEquipoTraductor: public tTraductor{
 public:
 private:
-    tEmpleado equitoTraductor[3];
+    tEmpleado * equitoTraductor[3];
 };
 #endif /* defined(__Traducciones__tEquipoTraductor__) */

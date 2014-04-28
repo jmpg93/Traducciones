@@ -7,15 +7,14 @@
 //
 
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+
 #include "tAgencia.h"
 
-int main(int argc, const char * argv[])
+int main(int argc, const char * argv[0])
 {
 
-    // insert code here...
-    std::cout << "Hello, World!\n";
-    
-    
     tAgencia agencia = tAgencia();
     agencia.muestraMenu();
     

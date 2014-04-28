@@ -10,6 +10,7 @@
 #define __Traducciones__tEmpleado__
 
 #include <iostream>
+#include <string>
 
 #include "tTraductor.h"
 #include "tIdioma.h"
@@ -19,17 +20,19 @@ using namespace std;
 class tEmpleado: public tTraductor{
 public:
     tEmpleado();
-    ~tEmpleado();
-    
+        
     void ponNombre();
     string dameNombre();
     
     void ponIdiomas();
     tIdioma * dameIdiomas();
     
+    void aniadeEmpleado();
+    
          
 private:
     tIdioma * idiomas[5];
     string nombre;
 };
+
 #endif /* defined(__Traducciones__tEmpleado__) */

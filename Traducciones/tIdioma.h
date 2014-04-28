@@ -10,9 +10,21 @@
 #define __Traducciones__tIdioma__
 
 #include <iostream>
+
+using namespace std;
+
 class tIdioma{
 public:
+    
+    tIdioma();
+    
+    string dameLengua();
+    void ponLengua(string);
+    
+    bool comparaIdioma(tIdioma *);
+    
 private:
+    string lengua;
 
 };
 #endif /* defined(__Traducciones__tIdioma__) */

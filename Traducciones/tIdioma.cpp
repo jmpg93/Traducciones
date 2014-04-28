@@ -7,3 +7,28 @@
 //
 
 #include "tIdioma.h"
+
+tIdioma::tIdioma(){
+    lengua = "";
+}
+
+void tIdioma::ponLengua(string len){
+    lengua = len;
+}
+
+string tIdioma::dameLengua(){
+    return lengua;
+}
+
+bool tIdioma::comparaIdioma(tIdioma * idiomas){
+    bool resul = false;
+    int i = 0;
+    
+    while (idiomas[i].dameLengua()!="") {
+        if (lengua == idiomas[i].dameLengua()) {
+            resul = true;
+        }
+    }
+    
+    return resul;
+}

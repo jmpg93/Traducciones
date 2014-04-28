@@ -8,7 +8,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include <fstream>
-#include  <iostream>
+#include <cstdlib>
+#include <iostream>
 
 #include "tAgencia.h"
 
@@ -17,7 +18,7 @@ using namespace::std;
 tAgencia::tAgencia(){
 
     ifstream infile;
-    infile.open ("//Users/jmpg93/Development/Traducciones/empleados.txt");
+    infile.open ("empleados.txt");
     
     string linea;
     if (infile.is_open())
@@ -52,8 +53,11 @@ void tAgencia::muestraMenu(){
     
 }
 
+
 void tAgencia::gestionaEmpleados(){
-    system("CLS");
+    //system("cls");
+    system("clear");
+    //clrscr();
     
     int opcion;
     cout << "Gestionando empleados" << endl;
@@ -66,6 +70,7 @@ void tAgencia::gestionaEmpleados(){
     
     switch (opcion) {
         case 1:
+            contratarEmpleado();
             break;
         case 2:
             break;
@@ -99,4 +104,8 @@ void tAgencia::gestionarServicios(){
         default:
             break;
     }
+}
+void tAgencia::contratarEmpleado(){
+    empleados[0] = new tEmpleado();
+    empleados[0]->aniadeEmpleado();
 }

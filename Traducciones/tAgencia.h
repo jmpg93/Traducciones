@@ -23,6 +23,9 @@ public:
     void gestionaEmpleados();
     void gestionarServicios();
     
+    void contratarEmpleado();
+    void despedirEmpleado();
+    
 private:
     tEmpleado * empleados[100];
     tServicio * servicios[10];
