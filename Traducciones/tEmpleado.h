@@ -26,6 +26,7 @@ public:
     
     void ponIdiomas();
     tIdioma * dameIdiomas();
+    int dameIdiomasHablados();
     
     void aniadeEmpleado();
     
@@ -34,6 +35,7 @@ private:
     tIdioma * idiomas[5];
     string nombre;
     string apellido;
+    int idiomasHablados;
 };
 
 #endif /* defined(__Traducciones__tEmpleado__) */

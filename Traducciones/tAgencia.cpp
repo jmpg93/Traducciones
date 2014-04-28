@@ -8,8 +8,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include <fstream>
-#include <cstdlib>
 #include <iostream>
+#include <stdio.h>
 
 #include "tAgencia.h"
 
@@ -19,11 +19,15 @@ tAgencia::tAgencia(){
 
     ifstream infile;
     infile.open ("empleados.txt");
-    
+    numeroEmpleados = 0;
     string linea;
     if (infile.is_open())
     {
-        getline(infile, linea);
+        while (getline(infile, linea)) {
+            numeroEmpleados++;
+        }
+        
+        
         cout << linea;
         infile.close();
     }
@@ -56,7 +60,7 @@ void tAgencia::muestraMenu(){
 
 void tAgencia::gestionaEmpleados(){
     //system("cls");
-    system("clear");
+    //system("clear");
     //clrscr();
     
     int opcion;
@@ -106,21 +110,46 @@ void tAgencia::gestionarServicios(){
     }
 }
 void tAgencia::contratarEmpleado(){
-    bool enc;
-    int numEmp = 0;
-    while (!enc && numEmp < 100) {
-        if (empleados[numEmp]==NULL) {
-            empleados[numEmp]->aniadeEmpleado();
-        }
+
+    if (empleados[numeroEmpleados] == NULL) {
+        empleados[numeroEmpleados] = new tEmpleado();
     }
+    empleados[numeroEmpleados]->aniadeEmpleado();
+    numeroEmpleados++;
+    if(guardaListaEmpleados()){
+        cout << "Empleado contratado correctamente" << endl;
+    }else cout << "Error contratando" << endl;
 }
 
+
 bool tAgencia::guardaListaEmpleados(){
-    ofstream onfile;
-    onfile.open ("empleados.txt");
-    if (onfile.is_open())
-    {
+    bool resul = true;
+    
+    fstream ficheroSalida;
+    
+    
+    ficheroSalida.open ("empleados.txt", ios::out);
+    
+    if (ficheroSalida.is_open()) {
+        for (int i = 0; i < numeroEmpleados; i++) {
+            
+            ficheroSalida << empleados[i]->dameNombre() << " ";
+            tIdioma *idiomas = empleados[i]->dameIdiomas();
+            
+            for (int j = 0; j < empleados[i]->dameIdiomasHablados();j++) {
+                
+                ficheroSalida << idiomas[j].dameLengua();
+            }
+        }
         
-        onfile.close();
+        ficheroSalida.close();
     }
+    else resul = false;
+    
+    
+    for (int i = 0; i < numeroEmpleados; i++){
+        
+    }
+    
+    return resul;
 }

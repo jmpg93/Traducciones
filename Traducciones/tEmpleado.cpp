@@ -18,6 +18,7 @@ void tEmpleado::aniadeEmpleado(){
     //num no puede ser mayor que 5
     int num;
     
+    nombre = "jose";
     
     cout << "Introduce el nombre y primer apellido: ";
     cin >> nombre;
@@ -25,12 +26,12 @@ void tEmpleado::aniadeEmpleado(){
     cout << endl;
     
     cout << "Introduce numero de idiomas que domina: ";
-    cin >> num;
+    cin >> idiomasHablados;
     cout << endl;
     
     cout << "Introduce los idiomas" << endl;
     
-    for (int i = 0; i<num; i++) {
+    for (int i = 0; i < idiomasHablados; i++) {
         string lengua;
         cin >> lengua;
         if (idiomas[i]==NULL) {
@@ -39,4 +40,13 @@ void tEmpleado::aniadeEmpleado(){
         idiomas[i]->ponLengua(lengua);
     }
 
+}
+int tEmpleado::dameIdiomasHablados(){
+    return idiomasHablados;
+}
+tIdioma * tEmpleado::dameIdiomas(){
+    return idiomas[0];
+}
+string tEmpleado::dameNombre(){
+    return nombre + " " + apellido;
 }
