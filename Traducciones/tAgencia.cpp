@@ -18,16 +18,18 @@ using namespace::std;
 tAgencia::tAgencia(){
 
     ifstream infile;
-    infile.open ("empleados.txt");
+    infile.open ("//Users/jmpg93/Development/Traducciones/empleados.txt");
     numeroEmpleados = 0;
     string linea;
     if (infile.is_open())
     {
         while (getline(infile, linea)) {
+            if (empleados[numeroEmpleados]==NULL) {
+                empleados[numeroEmpleados] = new tEmpleado();
+            }
+            empleados[numeroEmpleados]->cargaEmpleado(linea);
             numeroEmpleados++;
         }
-        
-        
         cout << linea;
         infile.close();
     }
@@ -128,7 +130,7 @@ bool tAgencia::guardaListaEmpleados(){
     fstream ficheroSalida;
     
     
-    ficheroSalida.open ("empleados.txt", ios::out);
+    ficheroSalida.open ("/Users/jmpg93/Development/Traducciones/empleados.txt", ios::out);
     
     if (ficheroSalida.is_open()) {
         for (int i = 0; i < numeroEmpleados; i++) {

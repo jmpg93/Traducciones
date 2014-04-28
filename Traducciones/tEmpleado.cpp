@@ -16,7 +16,7 @@ tEmpleado::tEmpleado(){
 
 void tEmpleado::aniadeEmpleado(){
     //num no puede ser mayor que 5
-    int num;
+    int num = 0;
     
     nombre = "jose";
     
@@ -41,11 +41,27 @@ void tEmpleado::aniadeEmpleado(){
     }
 
 }
+
+void tEmpleado::cargaEmpleado(string datos){
+    unsigned long pos = datos.find_first_of(" ");
+    nombre = datos.substr(0,pos + 1);
+    
+    pos = datos.find_first_of(" ");
+    apellido = datos.substr(0,pos + 1);
+    
+    pos = datos.find_first_of(" ");
+    idiomasHablados = datos.substr(0,pos + 1);
+    
+}
 int tEmpleado::dameIdiomasHablados(){
     return idiomasHablados;
 }
 tIdioma * tEmpleado::dameIdiomas(){
     return idiomas[0];
+}
+
+void tEmpleado::ponNombre(string nom){
+    nombre = nom;
 }
 string tEmpleado::dameNombre(){
     return nombre + " " + apellido;

@@ -21,7 +21,7 @@ class tEmpleado: public tTraductor{
 public:
     tEmpleado();
         
-    void ponNombre();
+    void ponNombre(string);
     string dameNombre();
     
     void ponIdiomas();
@@ -29,7 +29,7 @@ public:
     int dameIdiomasHablados();
     
     void aniadeEmpleado();
-    
+    void cargaEmpleado(string);
          
 private:
     tIdioma * idiomas[5];
