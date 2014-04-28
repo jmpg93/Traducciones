@@ -27,8 +27,7 @@ public:
     void ponIdiomas();
     tIdioma * dameIdiomas();
     
-    tes
-    
+         
 private:
     tIdioma * idiomas[5];
     string nombre;

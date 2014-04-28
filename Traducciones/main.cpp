@@ -7,12 +7,18 @@
 //
 
 #include <iostream>
+#include "tAgencia.h"
 
 int main(int argc, const char * argv[])
 {
 
     // insert code here...
     std::cout << "Hello, World!\n";
+    
+    
+    tAgencia agencia = tAgencia();
+    agencia.muestraMenu();
+    
     return 0;
 }
 

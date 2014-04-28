@@ -10,6 +10,7 @@
 #define __Traducciones__tAgencia__
 
 #include <iostream>
+#include <fstream>
 
 #include "tEmpleado.h"
 #include "tServicio.h"
@@ -17,15 +18,14 @@
 class tAgencia{
 public:
     tAgencia();
-    ~tAgencia();
     void muestraMenu();
     
     void gestionaEmpleados();
     void gestionarServicios();
     
 private:
-    tEmpleado empleados[100];
-    tServicio servicios[10];
+    tEmpleado * empleados[100];
+    tServicio * servicios[10];
 };
 
 #endif /* defined(__Traducciones__tAgencia__) */

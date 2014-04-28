@@ -6,17 +6,35 @@
 //  Copyright (c) 2014 Jose Maria Puerta. All rights reserved.
 //
 #include <stdlib.h>
+#include <iostream>
+#include <fstream>
+#include  <iostream>
 
 #include "tAgencia.h"
 
 using namespace::std;
+
+tAgencia::tAgencia(){
+
+    ifstream infile;
+    infile.open ("//Users/jmpg93/Development/Traducciones/empleados.txt");
+    
+    string linea;
+    if (infile.is_open())
+    {
+        getline(infile, linea);
+        cout << linea;
+        infile.close();
+    }
+    
+    
+}
 
 void tAgencia::muestraMenu(){
     int opcion;
     cout << "Bienvenido al sistema de traducciones" << endl;
     
     cout << "1. Gestionar empleados" << endl;
-    cout << "" << endl;
     cout << "2. Gestionar servicios" << endl;
     
     cin >> opcion;
