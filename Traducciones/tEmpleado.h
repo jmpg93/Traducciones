@@ -14,10 +14,21 @@
 #include "tTraductor.h"
 #include "tIdioma.h"
 
+using namespace std;
+
 class tEmpleado: public tTraductor{
 public:
-private:
-    tIdioma idiomas[5];
+    tEmpleado();
+    ~tEmpleado();
     
+    void ponNombre();
+    string dameNombre();
+    
+    void ponIdiomas();
+    tIdioma * dameIdiomas();
+    
+private:
+    tIdioma * idiomas[5];
+    string nombre;
 };
 #endif /* defined(__Traducciones__tEmpleado__) */

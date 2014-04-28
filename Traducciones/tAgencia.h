@@ -19,6 +19,10 @@ public:
     tAgencia();
     ~tAgencia();
     void muestraMenu();
+    
+    void gestionaEmpleados();
+    void gestionarServicios();
+    
 private:
     tEmpleado empleados[100];
     tServicio servicios[10];
