@@ -10,17 +10,18 @@
 
 tEmpleado::tEmpleado(){
     nombre = "";
+    apellido = "";
     idiomas[0] = new tIdioma();
 }
 
 void tEmpleado::aniadeEmpleado(){
-
+    //num no puede ser mayor que 5
     int num;
     
-    nombre = "jose";
     
-    cout << "Introduce el nombre: ";
+    cout << "Introduce el nombre y primer apellido: ";
     cin >> nombre;
+    cin >> apellido;
     cout << endl;
     
     cout << "Introduce numero de idiomas que domina: ";

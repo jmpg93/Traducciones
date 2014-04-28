@@ -26,9 +26,13 @@ public:
     void contratarEmpleado();
     void despedirEmpleado();
     
+    bool guardaListaEmpleados();
+    
 private:
     tEmpleado * empleados[100];
     tServicio * servicios[10];
+    
+    int numeroEmpleados;
 };
 
 #endif /* defined(__Traducciones__tAgencia__) */

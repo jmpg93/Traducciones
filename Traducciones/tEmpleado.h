@@ -33,6 +33,7 @@ public:
 private:
     tIdioma * idiomas[5];
     string nombre;
+    string apellido;
 };
 
 #endif /* defined(__Traducciones__tEmpleado__) */

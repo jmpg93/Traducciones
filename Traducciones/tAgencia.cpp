@@ -106,6 +106,21 @@ void tAgencia::gestionarServicios(){
     }
 }
 void tAgencia::contratarEmpleado(){
-    empleados[0] = new tEmpleado();
-    empleados[0]->aniadeEmpleado();
+    bool enc;
+    int numEmp = 0;
+    while (!enc && numEmp < 100) {
+        if (empleados[numEmp]==NULL) {
+            empleados[numEmp]->aniadeEmpleado();
+        }
+    }
+}
+
+bool tAgencia::guardaListaEmpleados(){
+    ofstream onfile;
+    onfile.open ("empleados.txt");
+    if (onfile.is_open())
+    {
+        
+        onfile.close();
+    }
 }
