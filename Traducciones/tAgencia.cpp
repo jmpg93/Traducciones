@@ -173,7 +173,7 @@ bool tAgencia::guardaListaEmpleados(){
     if (ficheroSalida.is_open()) {
         tIdioma * idioma = new tIdioma();
         
-        for (int i = 0; i < numeroEmpleados - 1; i++) {
+        for (int i = 0; i < numeroEmpleados; i++) {
             
             ficheroSalida << empleados[i]->dameNombre() << " ";
             ficheroSalida << empleados[i]->dameIdiomasHablados() << " ";
@@ -181,9 +181,9 @@ bool tAgencia::guardaListaEmpleados(){
             
             
             for (int j = 0; j < empleados[i]->dameIdiomasHablados();j++) {
-                idioma = empleados[j]->dameIdioma(j);
+                idioma = empleados[i]->dameIdioma(j);
                 ficheroSalida << idioma->dameLengua();
-                if (j < empleados[i]->dameIdiomasHablados() - 1) cout << " ";
+                ficheroSalida << " ";
             }
             ficheroSalida << endl;
         }
