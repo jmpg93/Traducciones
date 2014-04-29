@@ -43,14 +43,31 @@ void tEmpleado::aniadeEmpleado(){
 }
 
 void tEmpleado::cargaEmpleado(string datos){
+    int lengt = datos.length();
+    
     unsigned long pos = datos.find_first_of(" ");
-    nombre = datos.substr(0,pos + 1);
+    nombre = datos.substr(0,pos);
+    datos = datos.substr(pos + 1, lengt);
     
     pos = datos.find_first_of(" ");
-    apellido = datos.substr(0,pos + 1);
+    apellido = datos.substr(0,pos);
+    datos = datos.substr(pos + 1, lengt);
     
     pos = datos.find_first_of(" ");
-    idiomasHablados = datos.substr(0,pos + 1);
+    string aux =  datos.substr(0, pos);
+    idiomasHablados = (int)aux[0] - 48;
+    datos = datos.substr(pos + 1, lengt);
+    
+    
+    for (int i = 0; i < idiomasHablados; i++){
+        pos = datos.find_first_of(" ");
+        string aux =  datos.substr(0, pos);
+        datos = datos.substr(pos + 1, lengt);
+        if(idiomas[i]==NULL){
+            idiomas[i] = new tIdioma();
+        }
+        idiomas[i]->ponLengua(aux);
+    }
     
 }
 int tEmpleado::dameIdiomasHablados(){

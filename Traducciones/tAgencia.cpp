@@ -18,7 +18,7 @@ using namespace::std;
 tAgencia::tAgencia(){
 
     ifstream infile;
-    infile.open ("//Users/jmpg93/Development/Traducciones/empleados.txt");
+    infile.open ("//Users/jmpg93/Development/empleados.txt");
     numeroEmpleados = 0;
     string linea;
     if (infile.is_open())
