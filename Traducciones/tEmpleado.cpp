@@ -16,9 +16,7 @@ tEmpleado::tEmpleado(){
 
 void tEmpleado::aniadeEmpleado(){
     //num no puede ser mayor que 5
-    int num = 0;
     
-    nombre = "jose";
     
     cout << "Introduce el nombre y primer apellido: ";
     cin >> nombre;
@@ -70,11 +68,23 @@ void tEmpleado::cargaEmpleado(string datos){
     }
     
 }
+
+void tEmpleado::mostrarEmpleado(){
+    cout << nombre << " " << apellido << ". Idiomas: ";
+    for (int i = 0; i<idiomasHablados; i++) {
+        cout << idiomas[i]->dameLengua();
+        if (i<idiomasHablados-1) cout << ", ";
+    }
+    cout << endl;
+    
+}
+
+
 int tEmpleado::dameIdiomasHablados(){
     return idiomasHablados;
 }
-tIdioma * tEmpleado::dameIdiomas(){
-    return idiomas[0];
+tIdioma * tEmpleado::dameIdioma(int i){
+    return idiomas[i];
 }
 
 void tEmpleado::ponNombre(string nom){

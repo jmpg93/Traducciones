@@ -25,8 +25,10 @@ public:
     
     void contratarEmpleado();
     void despedirEmpleado();
+    void mostrarEmpleados();
     
     bool guardaListaEmpleados();
+    void borraEmpleado(string, string);
     
 private:
     tEmpleado * empleados[100];

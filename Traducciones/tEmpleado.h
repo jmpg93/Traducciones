@@ -25,11 +25,12 @@ public:
     string dameNombre();
     
     void ponIdiomas();
-    tIdioma * dameIdiomas();
+    tIdioma * dameIdioma(int);
     int dameIdiomasHablados();
     
     void aniadeEmpleado();
     void cargaEmpleado(string);
+    void mostrarEmpleado();
          
 private:
     tIdioma * idiomas[5];

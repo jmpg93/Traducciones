@@ -30,7 +30,6 @@ tAgencia::tAgencia(){
             empleados[numeroEmpleados]->cargaEmpleado(linea);
             numeroEmpleados++;
         }
-        cout << linea;
         infile.close();
     }
     
@@ -39,23 +38,28 @@ tAgencia::tAgencia(){
 
 void tAgencia::muestraMenu(){
     int opcion;
+    
     cout << "Bienvenido al sistema de traducciones" << endl;
-    
-    cout << "1. Gestionar empleados" << endl;
-    cout << "2. Gestionar servicios" << endl;
-    
-    cin >> opcion;
-    
-    switch (opcion) {
-        case 1:
-            gestionaEmpleados();
-            break;
-        case 2:
-            gestionarServicios();
-            break;
-        default:
-            break;
-    }
+    do {
+        cout << "1. Gestionar empleados" << endl;
+        cout << "2. Gestionar servicios" << endl;
+        cout << "3. Salir" << endl;
+        
+        cin >> opcion;
+        
+        switch (opcion) {
+            case 1:
+                gestionaEmpleados();
+                break;
+            case 2:
+                gestionarServicios();
+                break;
+            case 3:
+                break;
+            default:
+                break;
+        }
+    } while (opcion!=3);
     
 }
 
@@ -64,28 +68,38 @@ void tAgencia::gestionaEmpleados(){
     //system("cls");
     //system("clear");
     //clrscr();
-    
     int opcion;
-    cout << "Gestionando empleados" << endl;
     
-    cout << "1. Contratar empleado" << endl;
-    cout << "2. Despedir empleadoss" << endl;
-    cout << "3. Mostrar empleados" << endl;
+    do {
+        
+        cout << "Gestionando empleados" << endl;
+        
+        cout << "1. Contratar empleado" << endl;
+        cout << "2. Despedir empleados" << endl;
+        cout << "3. Mostrar empleados" << endl;
+        cout << "4. Volver" << endl;
+        
+        
+        cin >> opcion;
+        
+        switch (opcion) {
+            case 1:
+                contratarEmpleado();
+                break;
+            case 2:
+                despedirEmpleado();
+                break;
+            case 3:
+                mostrarEmpleados();
+                break;
+                
+            default:
+                break;
+        }
+    } while (opcion!=4);
     
-    cin >> opcion;
+    if (opcion == 4) muestraMenu();
     
-    switch (opcion) {
-        case 1:
-            contratarEmpleado();
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
-            
-        default:
-            break;
-    }
 }
 void tAgencia::gestionarServicios(){
     system("CLS");
@@ -111,6 +125,7 @@ void tAgencia::gestionarServicios(){
             break;
     }
 }
+
 void tAgencia::contratarEmpleado(){
 
     if (empleados[numeroEmpleados] == NULL) {
@@ -123,6 +138,29 @@ void tAgencia::contratarEmpleado(){
     }else cout << "Error contratando" << endl;
 }
 
+void tAgencia::mostrarEmpleados(){
+    cout << endl << "Lista de empleados actualmente contratados" << endl;
+    for (int i = 0 ; i < numeroEmpleados; i++) {
+        cout << i + 1 << ".   ";
+        empleados[i]->mostrarEmpleado();
+    }
+    cout << endl;
+}
+
+void tAgencia::despedirEmpleado(){
+    string nombre;
+    string apellido;
+    
+    mostrarEmpleados();
+    cout << endl << "Introduzca el nombre y apellido del empleado que va a ser despedido" << endl;
+    
+    cin >> nombre >> apellido;
+    borraEmpleado(nombre, apellido);
+    numeroEmpleados--;
+    
+    guardaListaEmpleados();
+    
+}
 
 bool tAgencia::guardaListaEmpleados(){
     bool resul = true;
@@ -130,18 +168,24 @@ bool tAgencia::guardaListaEmpleados(){
     fstream ficheroSalida;
     
     
-    ficheroSalida.open ("/Users/jmpg93/Development/Traducciones/empleados.txt", ios::out);
+    ficheroSalida.open ("/Users/jmpg93/Development/empleados.txt", ios::out);
     
     if (ficheroSalida.is_open()) {
-        for (int i = 0; i < numeroEmpleados; i++) {
+        tIdioma * idioma = new tIdioma();
+        
+        for (int i = 0; i < numeroEmpleados - 1; i++) {
             
             ficheroSalida << empleados[i]->dameNombre() << " ";
-            tIdioma *idiomas = empleados[i]->dameIdiomas();
+            ficheroSalida << empleados[i]->dameIdiomasHablados() << " ";
+            
+            
             
             for (int j = 0; j < empleados[i]->dameIdiomasHablados();j++) {
-                
-                ficheroSalida << idiomas[j].dameLengua();
+                idioma = empleados[j]->dameIdioma(j);
+                ficheroSalida << idioma->dameLengua();
+                if (j < empleados[i]->dameIdiomasHablados() - 1) cout << " ";
             }
+            ficheroSalida << endl;
         }
         
         ficheroSalida.close();
@@ -154,4 +198,27 @@ bool tAgencia::guardaListaEmpleados(){
     }
     
     return resul;
+}
+
+void tAgencia::borraEmpleado(string nom, string ap){
+    tEmpleado * empleado = NULL;
+    
+    int i = 0;
+    bool enc = false;
+    
+    while (i < numeroEmpleados && !enc) {
+        if (empleados[i]->dameNombre() == nom + " " + ap) {
+            empleado = empleados[i];
+            enc = true;
+        }
+        i++;
+    }
+    
+    if (empleado == NULL) cout << "No se ha encontrado el empleado" << endl;
+    else cout << "Se ha borrado correctamente el empelado: " << empleado->dameNombre() << endl;
+    
+    i = i - 1;
+    for (int j = i; j <= numeroEmpleados - i; j++) {
+        empleados[j] = empleados[j+1];
+    }
 }
