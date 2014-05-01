@@ -30,6 +30,9 @@ public:
     bool guardaListaEmpleados();
     void borraEmpleado(string, string);
     
+    void buscaTraductor(tIdioma, tIdioma);
+    void buscaEmpleadoParaTraductor(tIdioma);
+    
 private:
     tEmpleado * empleados[100];
     tServicio * servicios[10];

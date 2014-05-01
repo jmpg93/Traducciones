@@ -8,7 +8,8 @@
 
 #include "tEmpleado.h"
 
-tEmpleado::tEmpleado(){
+tEmpleado::tEmpleado():tTraductor(){
+    
     nombre = "";
     apellido = "";
     idiomas[0] = new tIdioma();

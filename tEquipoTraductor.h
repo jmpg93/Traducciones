@@ -16,6 +16,8 @@
 
 class tEquipoTraductor: public tTraductor{
 public:
+    tEquipoTraductor();
+    tEquipoTraductor
 private:
     tEmpleado * equitoTraductor[3];
 };

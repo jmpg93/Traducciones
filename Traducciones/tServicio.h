@@ -16,8 +16,10 @@
 
 class tServicio{
 public:
+    tServicio();
 private:
-    tTraductor traductor;
+    tTraductor * traductor;
+    
     tIdioma idiomaOrigen;
     tIdioma idiomaDestino;
 };

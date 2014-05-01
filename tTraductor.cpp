@@ -7,3 +7,6 @@
 //
 
 #include "tTraductor.h"
+tTraductor::tTraductor(){
+    enServicio = false;
+}

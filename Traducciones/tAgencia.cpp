@@ -12,6 +12,7 @@
 #include <stdio.h>
 
 #include "tAgencia.h"
+#include "tIdioma.h"
 
 using namespace::std;
 
@@ -220,5 +221,22 @@ void tAgencia::borraEmpleado(string nom, string ap){
     i = i - 1;
     for (int j = i; j <= numeroEmpleados - i; j++) {
         empleados[j] = empleados[j+1];
+    }
+}
+
+void tAgencia::buscaTraductor(tIdioma iOrigen, tIdioma iDestino){
+    bool destino = false, origen = false;
+    for (int i = 0; i<numeroEmpleados; i++) {
+        for (int j = 0; j < empleados[i]->dameIdiomasHablados(); j++){
+            tIdioma * idiomaHablado = empleados[i]->dameIdioma(j);
+            
+            if (iOrigen.comparaIdioma(idiomaHablado)) {
+                origen = true;
+            }
+            
+            if (iDestino.comparaIdioma(idiomaHablado)) {
+                destino = true;
+            }
+        }
     }
 }
