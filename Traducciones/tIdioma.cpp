@@ -28,6 +28,7 @@ bool tIdioma::comparaIdioma(tIdioma * idiomas){
         if (lengua == idiomas[i].dameLengua()) {
             resul = true;
         }
+        i++;
     }
     
     return resul;

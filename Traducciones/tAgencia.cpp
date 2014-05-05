@@ -103,28 +103,42 @@ void tAgencia::gestionaEmpleados(){
     
 }
 void tAgencia::gestionarServicios(){
-    system("CLS");
-    
+   //system("CLS");
     int opcion;
-    cout << "Gestionando servicios" << endl;
+    do {
+        
+        cout << "Gestionando servicios" << endl;
+        
+        cout << "1. Contratar servicio" << endl;
+        cout << "2. Rescindir servicio" << endl;
+        cout << "3. Mostrar servicios activos" << endl;
+        cout << "4. Volver" << endl;
+        
+        cin >> opcion;
+        
+        switch (opcion) {
+            case 1:
+            {
+                tIdioma origen = tIdioma();
+                origen.ponLengua("danes");
+                tIdioma destino = tIdioma();
+                destino.ponLengua("ingles");
+                buscaTraductor(origen,destino);
+            }
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+                
+            default:
+                break;
+        }
+    } while (opcion!=4);
     
-    cout << "1. Contratar servicio" << endl;
-    cout << "2. Rescindir servicio" << endl;
-    cout << "3. Mostrar servicios activos" << endl;
-    
-    cin >> opcion;
-    
-    switch (opcion) {
-        case 1:
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
-            
-        default:
-            break;
-    }
+    if (opcion == 4) muestraMenu();
 }
 
 void tAgencia::contratarEmpleado(){
@@ -226,17 +240,16 @@ void tAgencia::borraEmpleado(string nom, string ap){
 
 void tAgencia::buscaTraductor(tIdioma iOrigen, tIdioma iDestino){
     bool destino = false, origen = false;
+    bool enc = false;
     for (int i = 0; i<numeroEmpleados; i++) {
         for (int j = 0; j < empleados[i]->dameIdiomasHablados(); j++){
             tIdioma * idiomaHablado = empleados[i]->dameIdioma(j);
             
-            if (iOrigen.comparaIdioma(idiomaHablado)) {
-                origen = true;
-            }
+            origen = idiomaHablado->comparaIdioma(&iOrigen);
+            destino = idiomaHablado->comparaIdioma(&iDestino);
+            if (origen && destino); //nuevo servicio + enc = true;
             
-            if (iDestino.comparaIdioma(idiomaHablado)) {
-                destino = true;
-            }
+            if (!enc);//busco y creo grupo
         }
     }
 }
