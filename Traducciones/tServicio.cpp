@@ -7,3 +7,8 @@
 //
 
 #include "tServicio.h"
+tServicio::tServicio(tTraductor * tradu, tIdioma iO, tIdioma iD){
+    traductor = tradu;
+    idiomaDestino = iD;
+    idiomaOrigen = iO;
+}

@@ -7,3 +7,13 @@
 //
 
 #include "tEquipoTraductor.h"
+
+tEquipoTraductor::tEquipoTraductor(){
+    numIntegrantes = 0;
+    equitoTraductor[0] = new tTraductor();
+}
+
+void tEquipoTraductor::aniadeTraductor(tTraductor *tradu){
+    equitoTraductor[numIntegrantes] = tradu;
+    numIntegrantes++;
+}

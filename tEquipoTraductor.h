@@ -16,8 +16,10 @@
 
 class tEquipoTraductor: public tTraductor{
 public:
+    void aniadeTraductor(tTraductor *tradu);
     tEquipoTraductor();
 private:
-    tEmpleado * equitoTraductor[3];
+    tTraductor * equitoTraductor[3];
+    int numIntegrantes;
 };
 #endif /* defined(__Traducciones__tEquipoTraductor__) */

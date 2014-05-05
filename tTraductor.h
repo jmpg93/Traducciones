@@ -16,6 +16,10 @@
 class tTraductor{
 public:
     tTraductor();
+    void ocupaTraductor();
+    void liberaTraductor();
+    bool dameServicio();
+    
     
 private:
     bool enServicio;

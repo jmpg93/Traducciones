@@ -31,6 +31,8 @@ public:
     void aniadeEmpleado();
     void cargaEmpleado(string);
     void mostrarEmpleado();
+    
+    bool tieneIdioma(tIdioma);
          
 private:
     tIdioma * idiomas[5];

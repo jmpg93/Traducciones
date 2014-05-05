@@ -30,14 +30,17 @@ public:
     bool guardaListaEmpleados();
     void borraEmpleado(string, string);
     
-    void buscaTraductor(tIdioma, tIdioma);
-    void buscaEmpleadoParaTraductor(tIdioma);
+    bool buscaTraductor(tIdioma, tIdioma);
+    bool buscaEquipoTraductor(tIdioma, tIdioma);
+    
+    bool contrataServicio(tTraductor*, tIdioma, tIdioma);
     
 private:
     tEmpleado * empleados[100];
     tServicio * servicios[10];
     
     int numeroEmpleados;
+    int numeroServicios;
 };
 
 #endif /* defined(__Traducciones__tAgencia__) */

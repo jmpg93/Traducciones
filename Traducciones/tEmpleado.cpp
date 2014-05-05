@@ -94,3 +94,14 @@ void tEmpleado::ponNombre(string nom){
 string tEmpleado::dameNombre(){
     return nombre + " " + apellido;
 }
+
+bool tEmpleado::tieneIdioma(tIdioma idiom){
+    bool enc = false;
+    int i = 0;
+    while (!enc && i < idiomasHablados) {
+        if (idiomas[i]->comparaIdioma(&idiom)) enc = true;
+        i++;
+    }
+    
+    return enc;
+}

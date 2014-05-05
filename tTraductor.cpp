@@ -7,6 +7,17 @@
 //
 
 #include "tTraductor.h"
+
 tTraductor::tTraductor(){
     enServicio = false;
+}
+
+void tTraductor::liberaTraductor(){
+    enServicio = false;
+}
+void tTraductor::ocupaTraductor(){
+    enServicio = true;
+}
+bool tTraductor::dameServicio(){
+    return enServicio;
 }

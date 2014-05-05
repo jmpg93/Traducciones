@@ -12,6 +12,7 @@
 #include <stdio.h>
 
 #include "tAgencia.h"
+#include "tEquipoTraductor.h"
 #include "tIdioma.h"
 
 using namespace::std;
@@ -21,6 +22,7 @@ tAgencia::tAgencia(){
     ifstream infile;
     infile.open ("//Users/jmpg93/Development/empleados.txt");
     numeroEmpleados = 0;
+    numeroServicios = 0;
     string linea;
     if (infile.is_open())
     {
@@ -238,18 +240,62 @@ void tAgencia::borraEmpleado(string nom, string ap){
     }
 }
 
-void tAgencia::buscaTraductor(tIdioma iOrigen, tIdioma iDestino){
-    bool destino = false, origen = false;
+bool tAgencia::buscaTraductor(tIdioma iOrigen, tIdioma iDestino){
+    
+    bool destino, origen;
     bool enc = false;
-    for (int i = 0; i<numeroEmpleados; i++) {
-        for (int j = 0; j < empleados[i]->dameIdiomasHablados(); j++){
+    int i = 0;
+    
+    while (!enc && i<numeroEmpleados) {
+        destino = false;
+        origen = false;
+        int j = 0;
+        
+        while (!enc && j < empleados[i]->dameIdiomasHablados()){
             tIdioma * idiomaHablado = empleados[i]->dameIdioma(j);
             
             origen = idiomaHablado->comparaIdioma(&iOrigen);
             destino = idiomaHablado->comparaIdioma(&iDestino);
-            if (origen && destino); //nuevo servicio + enc = true;
             
-            if (!enc);//busco y creo grupo
+            if (origen && destino && !empleados[i]->dameServicio()) enc = contrataServicio(empleados[i], iOrigen, iDestino);
+            j++;
         }
+        
+        i++;
     }
+    return enc;
+}
+
+bool tAgencia::buscaEquipoTraductor(tIdioma iOrigen, tIdioma iDestino){
+    
+    tEquipoTraductor * equipo = new tEquipoTraductor();
+    bool destino = false, origen = false;
+    bool enc = false;
+    int j = 0;
+    
+    while (!origen && j < numeroEmpleados) {
+        if (empleados[j]->tieneIdioma(iOrigen)){
+            equipo->aniadeTraductor(empleados[j]);
+            origen = true;
+        }
+        j++;
+    }
+    
+    j = 0;
+    while (!destino && j < numeroEmpleados) {
+        if (empleados[j]->tieneIdioma(iDestino)){
+            equipo->aniadeTraductor(empleados[j]);
+            destino = true;
+        }
+        j++;
+    }
+    
+    return enc;
+}
+
+bool tAgencia::contrataServicio(tTraductor * tradu, tIdioma iOrigen, tIdioma iDestino){
+    tradu->ocupaTraductor();
+    servicios[numeroServicios] = new tServicio(tradu, iOrigen, iDestino);
+    return true;
+
 }
