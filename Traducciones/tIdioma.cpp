@@ -20,16 +20,6 @@ string tIdioma::dameLengua(){
     return lengua;
 }
 
-bool tIdioma::comparaIdioma(tIdioma * idiomas){
-    bool resul = false;
-    int i = 0;
-    
-    while (idiomas[i].dameLengua()!="") {
-        if (lengua == idiomas[i].dameLengua()) {
-            resul = true;
-        }
-        i++;
-    }
-    
-    return resul;
+bool tIdioma::comparaIdioma(tIdioma idiomas){  
+    return lengua == idiomas.dameLengua();
 }

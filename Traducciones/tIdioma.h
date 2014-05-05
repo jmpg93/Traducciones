@@ -21,7 +21,7 @@ public:
     string dameLengua();
     void ponLengua(string);
     
-    bool comparaIdioma(tIdioma *);
+    bool comparaIdioma(tIdioma);
     
 private:
     string lengua;

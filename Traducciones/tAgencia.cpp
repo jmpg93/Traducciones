@@ -107,6 +107,7 @@ void tAgencia::gestionaEmpleados(){
 void tAgencia::gestionarServicios(){
    //system("CLS");
     int opcion;
+    bool encontrado;
     do {
         
         cout << "Gestionando servicios" << endl;
@@ -124,8 +125,11 @@ void tAgencia::gestionarServicios(){
                 tIdioma origen = tIdioma();
                 origen.ponLengua("danes");
                 tIdioma destino = tIdioma();
-                destino.ponLengua("ingles");
-                buscaTraductor(origen,destino);
+                destino.ponLengua("portugues");
+                encontrado = buscaTraductor(origen,destino);
+                
+                if (!encontrado) buscaEquipoTraductor(origen, destino);
+                    
             }
                 break;
             case 2:
@@ -254,8 +258,8 @@ bool tAgencia::buscaTraductor(tIdioma iOrigen, tIdioma iDestino){
         while (!enc && j < empleados[i]->dameIdiomasHablados()){
             tIdioma * idiomaHablado = empleados[i]->dameIdioma(j);
             
-            origen = idiomaHablado->comparaIdioma(&iOrigen);
-            destino = idiomaHablado->comparaIdioma(&iDestino);
+            origen = idiomaHablado->comparaIdioma(iOrigen);
+            destino = idiomaHablado->comparaIdioma(iDestino);
             
             if (origen && destino && !empleados[i]->dameServicio()) enc = contrataServicio(empleados[i], iOrigen, iDestino);
             j++;
@@ -269,6 +273,7 @@ bool tAgencia::buscaTraductor(tIdioma iOrigen, tIdioma iDestino){
 bool tAgencia::buscaEquipoTraductor(tIdioma iOrigen, tIdioma iDestino){
     
     tEquipoTraductor * equipo = new tEquipoTraductor();
+    
     bool destino = false, origen = false;
     bool enc = false;
     int j = 0;
@@ -289,7 +294,8 @@ bool tAgencia::buscaEquipoTraductor(tIdioma iOrigen, tIdioma iDestino){
         }
         j++;
     }
-    
+    //metodo tienen idioma comun? si = fin, no = busca idioma comun y busca nuevo empleado
+    if (origen && destino) enc = contrataServicio(equipo, iOrigen, iDestino);
     return enc;
 }
 

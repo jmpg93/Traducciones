@@ -99,7 +99,7 @@ bool tEmpleado::tieneIdioma(tIdioma idiom){
     bool enc = false;
     int i = 0;
     while (!enc && i < idiomasHablados) {
-        if (idiomas[i]->comparaIdioma(&idiom)) enc = true;
+        if (idiomas[i]->comparaIdioma(idiom)) enc = true;
         i++;
     }
     

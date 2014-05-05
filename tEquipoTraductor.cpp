@@ -14,6 +14,7 @@ tEquipoTraductor::tEquipoTraductor(){
 }
 
 void tEquipoTraductor::aniadeTraductor(tTraductor *tradu){
+    tradu->ocupaTraductor();
     equitoTraductor[numIntegrantes] = tradu;
     numIntegrantes++;
 }
