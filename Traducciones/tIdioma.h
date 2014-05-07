@@ -22,7 +22,7 @@ public:
     void ponLengua(string);
     
     bool comparaIdioma(tIdioma);
-    
+    void leerIdioma();
 private:
     string lengua;
 

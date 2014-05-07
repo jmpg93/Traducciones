@@ -36,6 +36,8 @@ public:
     bool comparaIdiomasDeEmpleados(tEmpleado *);
     
     int numeroTraductores();
+    
+    void muestraTraductores();
          
 private:
     tIdioma * idiomas[5];

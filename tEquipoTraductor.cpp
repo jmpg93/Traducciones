@@ -34,3 +34,9 @@ int tEquipoTraductor::dameIntegrantes(){
 int tEquipoTraductor::numeroTraductores(){
     return numIntegrantes;
 }
+
+void tEquipoTraductor::muestraTraductores(){
+    for (int i = 0; i < numIntegrantes; i++) {
+        equitoTraductor[i]->muestraTraductores();
+    }
+}

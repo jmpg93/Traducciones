@@ -23,3 +23,6 @@ string tIdioma::dameLengua(){
 bool tIdioma::comparaIdioma(tIdioma idiomas){  
     return lengua == idiomas.dameLengua();
 }
+void tIdioma::leerIdioma(){
+    cin >> lengua;
+}

@@ -120,20 +120,12 @@ void tAgencia::gestionarServicios(){
         
         switch (opcion) {
             case 1:
-            {
-                tIdioma origen = tIdioma();
-                origen.ponLengua("danes");
-                tIdioma destino = tIdioma();
-                destino.ponLengua("portugues");
-                encontrado = buscaTraductor(origen,destino);
-                
-                if (!encontrado) buscaEquipoTraductor(origen, destino);
-                    
-            }
+                contrataServicio();
                 break;
             case 2:
                 break;
             case 3:
+                mostrarServicios();
                 break;
             case 4:
                 break;
@@ -337,5 +329,26 @@ tEmpleado * tAgencia::buscaUltimoEmpleado(tEquipoTraductor * equipo){
     }
     
     return ultimoIntegrante;
+}
+
+void tAgencia::mostrarServicios(){
+    for (int i = 0; i <= numeroServicios; i++) {
+        servicios[i]->muestraServicio();
+    }
+}
+void tAgencia::contrataServicio(){
+    bool encontrado = false;
+    
+    tIdioma origen = tIdioma();
+    cout << "Introduce idioma origen" << endl;
+    origen.leerIdioma();
+    
+    tIdioma destino = tIdioma();
+    cout << "Introduce idioma origen" << endl;
+    destino.leerIdioma();
+    
+    encontrado = buscaTraductor(origen,destino);
+    
+    if (!encontrado) buscaEquipoTraductor(origen, destino);
 }
 

@@ -136,3 +136,7 @@ bool tEmpleado::comparaIdiomasDeEmpleados(tEmpleado * empleado){
 int tEmpleado::numeroTraductores(){
     return 1;
 }
+
+void tEmpleado::muestraTraductores(){
+    mostrarEmpleado();
+}
