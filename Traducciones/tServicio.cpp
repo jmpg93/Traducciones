@@ -13,12 +13,9 @@ tServicio::tServicio(tTraductor * tradu, tIdioma iO, tIdioma iD){
     idiomaOrigen = iO;
 }
 void tServicio::muestraServicio(){
-    for (int i = 0; i < traductor->numeroTraductores() ; i++) {
-        cout << "Mostrando servicios activos:" << endl << endl;
-        cout << "Idioma origen: " << idiomaOrigen.dameLengua() << endl;
-        cout << "Idioma destino: " << idiomaDestino.dameLengua() << endl << endl;
-        cout << "Traductores implicados: " << endl;
-        traductor->muestraTraductores();
-        cout << endl;        
-    }
+    cout << "Idioma origen: " << idiomaOrigen.dameLengua() << endl;
+    cout << "Idioma destino: " << idiomaDestino.dameLengua() << endl << endl;
+    cout << "Traductores implicados: " << endl;
+    traductor->muestraTraductores();
+    cout << endl;
 }

@@ -123,6 +123,7 @@ void tAgencia::gestionarServicios(){
                 contrataServicio();
                 break;
             case 2:
+                rescindirServicio();
                 break;
             case 3:
                 mostrarServicios();
@@ -237,20 +238,18 @@ void tAgencia::borraEmpleado(string nom, string ap){
 
 bool tAgencia::buscaTraductor(tIdioma iOrigen, tIdioma iDestino){
     
-    bool destino, origen;
+    bool destino = false, origen = false;
     bool enc = false;
     int i = 0;
     
     while (!enc && i<numeroEmpleados) {
-        destino = false;
-        origen = false;
         int j = 0;
         
         while (!enc && j < empleados[i]->dameIdiomasHablados()){
             tIdioma * idiomaHablado = empleados[i]->dameIdioma(j);
             
-            origen = idiomaHablado->comparaIdioma(iOrigen);
-            destino = idiomaHablado->comparaIdioma(iDestino);
+            origen = origen || idiomaHablado->comparaIdioma(iOrigen);
+            destino = destino || idiomaHablado->comparaIdioma(iDestino);
             
             if (origen && destino && !empleados[i]->dameServicio()) enc = contrataServicio(empleados[i], iOrigen, iDestino);
             j++;
@@ -310,20 +309,22 @@ bool tAgencia::contrataServicio(tTraductor * tradu, tIdioma iOrigen, tIdioma iDe
     if (servicios[numeroServicios]!=NULL) {
         resul = true;
     }
+    numeroServicios++;
     return resul;
 }
 
 
 tEmpleado * tAgencia::buscaUltimoEmpleado(tEquipoTraductor * equipo){
     tEmpleado * ultimoIntegrante = NULL;
-    bool enc = false, enc1 = false, enc2 = false;
+    bool enc = false, empleadoIdiomaOrigen = false, empleadoIdiomaDestino = false;
     int i = 0;
     
     while (!enc && i < numeroEmpleados) {
-        enc1 = empleados[i]->comparaIdiomasDeEmpleados(equipo->dameIntegrante(0));
-        enc2 = empleados[i]->comparaIdiomasDeEmpleados(equipo->dameIntegrante(1));
-        if (enc1 && enc2) {
+        empleadoIdiomaOrigen= empleados[i]->comparaIdiomasDeEmpleados(equipo->dameIntegrante(0));
+        empleadoIdiomaDestino = empleados[i]->comparaIdiomasDeEmpleados(equipo->dameIntegrante(1));
+        if (empleadoIdiomaOrigen && empleadoIdiomaDestino) {
             ultimoIntegrante = empleados[i];
+            enc = true;
         }
         i++;
     }
@@ -332,23 +333,33 @@ tEmpleado * tAgencia::buscaUltimoEmpleado(tEquipoTraductor * equipo){
 }
 
 void tAgencia::mostrarServicios(){
-    for (int i = 0; i <= numeroServicios; i++) {
+    cout << "Mostrando servicios activos:" << endl << endl;
+    for (int i = 0; i < numeroServicios; i++) {
+        cout << "Servicio " << i + 1 << endl;
         servicios[i]->muestraServicio();
     }
 }
 void tAgencia::contrataServicio(){
-    bool encontrado = false;
     
     tIdioma origen = tIdioma();
     cout << "Introduce idioma origen" << endl;
     origen.leerIdioma();
     
     tIdioma destino = tIdioma();
-    cout << "Introduce idioma origen" << endl;
+    cout << "Introduce idioma destino" << endl;
     destino.leerIdioma();
     
-    encontrado = buscaTraductor(origen,destino);
-    
-    if (!encontrado) buscaEquipoTraductor(origen, destino);
+    if (!buscaTraductor(origen,destino)) buscaEquipoTraductor(origen, destino);
 }
 
+bool tAgencia::rescindirServicio(){
+    int opcion;
+    cout << "Elige que servicio deseas rescindir: " << endl;
+    mostrarServicios();
+    cin >> opcion;
+    while (opcion > numeroServicios || opcion < 0) {
+        
+    }
+    
+    return true;
+}
