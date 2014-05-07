@@ -34,6 +34,8 @@ public:
     
     bool tieneIdioma(tIdioma);
     bool comparaIdiomasDeEmpleados(tEmpleado *);
+    
+    int numeroTraductores();
          
 private:
     tIdioma * idiomas[5];

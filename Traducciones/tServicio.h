@@ -17,6 +17,7 @@
 class tServicio{
 public:
     tServicio(tTraductor * traduc, tIdioma iO, tIdioma iD);
+    void muestraServicio();
 private:
     tTraductor * traductor;
     

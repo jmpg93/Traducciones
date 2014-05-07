@@ -24,6 +24,9 @@ public:
     int dameIntegrantes();
     
     tEmpleado * dameIntegrante(int);
+    
+    int numeroTraductores();
+    
 private:
     tEmpleado * equitoTraductor[3];
     int numIntegrantes;

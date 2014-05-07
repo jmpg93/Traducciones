@@ -42,7 +42,7 @@ void tEmpleado::aniadeEmpleado(){
 }
 
 void tEmpleado::cargaEmpleado(string datos){
-    int lengt = datos.length();
+    int lengt = (int) datos.length();
     
     unsigned long pos = datos.find_first_of(" ");
     nombre = datos.substr(0,pos);
@@ -131,4 +131,8 @@ bool tEmpleado::comparaIdiomasDeEmpleados(tEmpleado * empleado){
         i++;
     }
     return enc;
+}
+
+int tEmpleado::numeroTraductores(){
+    return 1;
 }

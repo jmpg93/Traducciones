@@ -30,3 +30,7 @@ tEmpleado * tEquipoTraductor::dameIntegrante(int pos){
 int tEquipoTraductor::dameIntegrantes(){
     return numIntegrantes;
 }
+
+int tEquipoTraductor::numeroTraductores(){
+    return numIntegrantes;
+}

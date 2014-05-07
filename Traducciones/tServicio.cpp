@@ -12,3 +12,8 @@ tServicio::tServicio(tTraductor * tradu, tIdioma iO, tIdioma iD){
     idiomaDestino = iD;
     idiomaOrigen = iO;
 }
+void tServicio::muestraServicio(){
+    for (int i = 0; i < traductor->dameTraductores() ; i++) {
+        
+    }
+}

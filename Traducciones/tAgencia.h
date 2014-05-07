@@ -35,6 +35,8 @@ public:
     bool buscaEquipoTraductor(tIdioma, tIdioma);
     
     bool contrataServicio(tTraductor*, tIdioma, tIdioma);
+    bool rescindirServicio();
+    void mostrarServicios();
     
     tEmpleado * buscaUltimoEmpleado(tEquipoTraductor *);
 

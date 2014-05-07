@@ -19,7 +19,7 @@ public:
     void ocupaTraductor();
     void liberaTraductor();
     bool dameServicio();
-    
+    virtual int numeroTraductores() = 0;
     
 private:
     bool enServicio;

@@ -312,9 +312,13 @@ bool tAgencia::buscaEquipoTraductor(tIdioma iOrigen, tIdioma iDestino){
 }
 
 bool tAgencia::contrataServicio(tTraductor * tradu, tIdioma iOrigen, tIdioma iDestino){
+    bool resul = false;
     tradu->ocupaTraductor();
     servicios[numeroServicios] = new tServicio(tradu, iOrigen, iDestino);
-    return true;
+    if (servicios[numeroServicios]!=NULL) {
+        resul = true;
+    }
+    return resul;
 }
 
 
