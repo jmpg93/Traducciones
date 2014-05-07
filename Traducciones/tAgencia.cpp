@@ -12,7 +12,6 @@
 #include <stdio.h>
 
 #include "tAgencia.h"
-#include "tEquipoTraductor.h"
 #include "tIdioma.h"
 
 using namespace::std;
@@ -274,7 +273,7 @@ bool tAgencia::buscaEquipoTraductor(tIdioma iOrigen, tIdioma iDestino){
     
     tEquipoTraductor * equipo = new tEquipoTraductor();
     
-    bool destino = false, origen = false;
+    bool destino = false, origen = false, comun = false;
     bool enc = false;
     int j = 0;
     
@@ -294,8 +293,21 @@ bool tAgencia::buscaEquipoTraductor(tIdioma iOrigen, tIdioma iDestino){
         }
         j++;
     }
-    //metodo tienen idioma comun? si = fin, no = busca idioma comun y busca nuevo empleado
-    if (origen && destino) enc = contrataServicio(equipo, iOrigen, iDestino);
+    if (origen && destino) {
+        comun = equipo->comparaIdiomasEquipoOrigenDestino();
+        if(!comun){
+            tEmpleado * ultimoIntegrante = buscaUltimoEmpleado(equipo);
+            if (ultimoIntegrante!=NULL) {
+                comun = true;
+                equipo->aniadeTraductor(ultimoIntegrante);
+            }
+        }
+        
+    }else{
+        cout << "Error creando el equipo" << endl;
+    }//metodo tienen idioma comun? si = fin, no = busca idioma comun y busca nuevo empleado
+    if (origen && destino && comun) enc = contrataServicio(equipo, iOrigen, iDestino);
+    else cout << "Error creando el equipo" << endl;
     return enc;
 }
 
@@ -303,5 +315,23 @@ bool tAgencia::contrataServicio(tTraductor * tradu, tIdioma iOrigen, tIdioma iDe
     tradu->ocupaTraductor();
     servicios[numeroServicios] = new tServicio(tradu, iOrigen, iDestino);
     return true;
-
 }
+
+
+tEmpleado * tAgencia::buscaUltimoEmpleado(tEquipoTraductor * equipo){
+    tEmpleado * ultimoIntegrante = NULL;
+    bool enc = false, enc1 = false, enc2 = false;
+    int i = 0;
+    
+    while (!enc && i < numeroEmpleados) {
+        enc1 = empleados[i]->comparaIdiomasDeEmpleados(equipo->dameIntegrante(0));
+        enc2 = empleados[i]->comparaIdiomasDeEmpleados(equipo->dameIntegrante(1));
+        if (enc1 && enc2) {
+            ultimoIntegrante = empleados[i];
+        }
+        i++;
+    }
+    
+    return ultimoIntegrante;
+}
+

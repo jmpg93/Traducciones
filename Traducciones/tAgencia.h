@@ -14,6 +14,7 @@
 
 #include "tEmpleado.h"
 #include "tServicio.h"
+#include "tEquipoTraductor.h"
 
 class tAgencia{
 public:
@@ -34,6 +35,9 @@ public:
     bool buscaEquipoTraductor(tIdioma, tIdioma);
     
     bool contrataServicio(tTraductor*, tIdioma, tIdioma);
+    
+    tEmpleado * buscaUltimoEmpleado(tEquipoTraductor *);
+
     
 private:
     tEmpleado * empleados[100];

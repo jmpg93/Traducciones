@@ -16,10 +16,16 @@
 
 class tEquipoTraductor: public tTraductor{
 public:
-    void aniadeTraductor(tTraductor *tradu);
+    void aniadeTraductor(tEmpleado *tradu);
     tEquipoTraductor();
+    
+    bool comparaIdiomasEquipoOrigenDestino();
+    
+    int dameIntegrantes();
+    
+    tEmpleado * dameIntegrante(int);
 private:
-    tTraductor * equitoTraductor[3];
+    tEmpleado * equitoTraductor[3];
     int numIntegrantes;
 };
 #endif /* defined(__Traducciones__tEquipoTraductor__) */

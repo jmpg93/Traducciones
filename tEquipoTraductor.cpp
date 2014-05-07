@@ -10,11 +10,23 @@
 
 tEquipoTraductor::tEquipoTraductor(){
     numIntegrantes = 0;
-    equitoTraductor[0] = new tTraductor();
+    equitoTraductor[0] = new tEmpleado();
 }
 
-void tEquipoTraductor::aniadeTraductor(tTraductor *tradu){
+void tEquipoTraductor::aniadeTraductor(tEmpleado *tradu){
     tradu->ocupaTraductor();
     equitoTraductor[numIntegrantes] = tradu;
     numIntegrantes++;
+}
+
+bool tEquipoTraductor::comparaIdiomasEquipoOrigenDestino(){
+    bool enc = false;
+    enc = equitoTraductor[0]->comparaIdiomasDeEmpleados(equitoTraductor[1]);
+    return enc;
+}
+tEmpleado * tEquipoTraductor::dameIntegrante(int pos){
+    return equitoTraductor[pos];
+}
+int tEquipoTraductor::dameIntegrantes(){
+    return numIntegrantes;
 }

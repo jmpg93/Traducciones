@@ -33,6 +33,7 @@ public:
     void mostrarEmpleado();
     
     bool tieneIdioma(tIdioma);
+    bool comparaIdiomasDeEmpleados(tEmpleado *);
          
 private:
     tIdioma * idiomas[5];

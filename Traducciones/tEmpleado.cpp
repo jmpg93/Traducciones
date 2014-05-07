@@ -105,3 +105,30 @@ bool tEmpleado::tieneIdioma(tIdioma idiom){
     
     return enc;
 }
+
+bool tEmpleado::comparaIdiomasDeEmpleados(tEmpleado * empleado){
+    bool enc = false;
+    int i = 0, j = 0;
+    
+    tEmpleado * empleadoMasIdiomas;
+    tEmpleado * empleadoMenosIdiomas;
+    
+    if (empleado->dameIdiomasHablados()>this->dameIdiomasHablados()) {
+        empleadoMasIdiomas = empleado;
+        empleadoMenosIdiomas = this;
+    } else {
+        empleadoMasIdiomas = this;
+        empleadoMenosIdiomas = empleado;
+    }
+    
+    while (!enc && i < empleadoMasIdiomas->dameIdiomasHablados()){
+        
+        j=0;
+        while (!enc && j < empleadoMenosIdiomas->dameIdiomasHablados()){
+            if(empleadoMenosIdiomas->dameIdioma(j)->dameLengua() == empleadoMasIdiomas->dameIdioma(i)->dameLengua()) enc = true;
+            j++;
+        }
+        i++;
+    }
+    return enc;
+}
