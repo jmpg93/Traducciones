@@ -10,6 +10,7 @@
 
 tEmpleado::tEmpleado():tTraductor(){
     
+    enServicio = false;
     nombre = "";
     apellido = "";
     idiomas[0] = new tIdioma();
@@ -71,7 +72,16 @@ void tEmpleado::cargaEmpleado(string datos){
 }
 
 void tEmpleado::mostrarEmpleado(){
-    cout << nombre << " " << apellido << ". Idiomas: ";
+    int aux = 20;
+    string aux2 = dameNombre();
+    
+   
+    cout << dameNombre() << ".";
+    for (aux -= (int)aux2.length(); aux>0; aux--) {
+        cout << " ";
+    }
+    cout << "Idiomas: ";
+    
     for (int i = 0; i<idiomasHablados; i++) {
         cout << idiomas[i]->dameLengua();
         if (i<idiomasHablados-1) cout << ", ";
@@ -140,3 +150,14 @@ int tEmpleado::numeroTraductores(){
 void tEmpleado::muestraTraductores(){
     mostrarEmpleado();
 }
+bool tEmpleado::dameServicio(){
+    return tTraductor::enServicio;
+}
+
+void tEmpleado::ocupaTraductor(){
+    enServicio = true;
+}
+void tEmpleado::liberaTraductor(){
+    enServicio = false;
+}
+

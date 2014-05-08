@@ -17,12 +17,13 @@
 using namespace::std;
 
 tAgencia::tAgencia(){
-
+    
     ifstream infile;
     infile.open ("//Users/jmpg93/Development/empleados.txt");
     numeroEmpleados = 0;
     numeroServicios = 0;
     string linea;
+    
     if (infile.is_open())
     {
         while (getline(infile, linea)) {
@@ -33,6 +34,10 @@ tAgencia::tAgencia(){
             numeroEmpleados++;
         }
         infile.close();
+    }
+    
+    for (int i = 0; i<10; i++) {
+        servicios[i] = NULL;
     }
     
     
@@ -244,14 +249,17 @@ bool tAgencia::buscaTraductor(tIdioma iOrigen, tIdioma iDestino){
     
     while (!enc && i<numeroEmpleados) {
         int j = 0;
-        
+        origen = false;
+        destino = false;
         while (!enc && j < empleados[i]->dameIdiomasHablados()){
             tIdioma * idiomaHablado = empleados[i]->dameIdioma(j);
-            
-            origen = origen || idiomaHablado->comparaIdioma(iOrigen);
-            destino = destino || idiomaHablado->comparaIdioma(iDestino);
-            
-            if (origen && destino && !empleados[i]->dameServicio()) enc = contrataServicio(empleados[i], iOrigen, iDestino);
+            if (!empleados[i]->dameServicio()) {
+                
+                origen = origen || idiomaHablado->comparaIdioma(iOrigen);
+                destino = destino || idiomaHablado->comparaIdioma(iDestino);
+                
+                if (origen && destino) enc = contrataServicio(empleados[i], iOrigen, iDestino);
+            }
             j++;
         }
         
@@ -269,7 +277,7 @@ bool tAgencia::buscaEquipoTraductor(tIdioma iOrigen, tIdioma iDestino){
     int j = 0;
     
     while (!origen && j < numeroEmpleados) {
-        if (empleados[j]->tieneIdioma(iOrigen)){
+        if (!empleados[j]->dameServicio() && empleados[j]->tieneIdioma(iOrigen)){
             equipo->aniadeTraductor(empleados[j]);
             origen = true;
         }
@@ -278,7 +286,7 @@ bool tAgencia::buscaEquipoTraductor(tIdioma iOrigen, tIdioma iDestino){
     
     j = 0;
     while (!destino && j < numeroEmpleados) {
-        if (empleados[j]->tieneIdioma(iDestino)){
+        if (!empleados[j]->dameServicio() && empleados[j]->tieneIdioma(iDestino)){
             equipo->aniadeTraductor(empleados[j]);
             destino = true;
         }
@@ -320,11 +328,13 @@ tEmpleado * tAgencia::buscaUltimoEmpleado(tEquipoTraductor * equipo){
     int i = 0;
     
     while (!enc && i < numeroEmpleados) {
-        empleadoIdiomaOrigen= empleados[i]->comparaIdiomasDeEmpleados(equipo->dameIntegrante(0));
-        empleadoIdiomaDestino = empleados[i]->comparaIdiomasDeEmpleados(equipo->dameIntegrante(1));
-        if (empleadoIdiomaOrigen && empleadoIdiomaDestino) {
-            ultimoIntegrante = empleados[i];
-            enc = true;
+        if (!empleados[i]->dameServicio()) {
+            empleadoIdiomaOrigen= empleados[i]->comparaIdiomasDeEmpleados(equipo->dameIntegrante(0));
+            empleadoIdiomaDestino = empleados[i]->comparaIdiomasDeEmpleados(equipo->dameIntegrante(1));
+            if (empleadoIdiomaOrigen && empleadoIdiomaDestino) {
+                ultimoIntegrante = empleados[i];
+                enc = true;
+            }
         }
         i++;
     }
@@ -335,6 +345,8 @@ tEmpleado * tAgencia::buscaUltimoEmpleado(tEquipoTraductor * equipo){
 void tAgencia::mostrarServicios(){
     cout << "Mostrando servicios activos:" << endl << endl;
     for (int i = 0; i < numeroServicios; i++) {
+        
+        cout << "=============================" << endl;
         cout << "Servicio " << i + 1 << endl;
         servicios[i]->muestraServicio();
     }
@@ -354,12 +366,26 @@ void tAgencia::contrataServicio(){
 
 bool tAgencia::rescindirServicio(){
     int opcion;
-    cout << "Elige que servicio deseas rescindir: " << endl;
+    bool enc = false;
+    
     mostrarServicios();
+    
+    cout << "Elige que servicio deseas rescindir: " << endl;
+    
     cin >> opcion;
-    while (opcion > numeroServicios || opcion < 0) {
-        
+    opcion = opcion - 1;
+    
+    while ((opcion <= numeroServicios || opcion >= 0) && !enc) {
+        delete servicios[opcion];
+        servicios[opcion] = NULL;
+        enc = true;
+    }
+    if (enc){
+        for (int j = opcion; j <= numeroServicios - opcion; j++) {
+            servicios[j] = servicios[j+1];
+        }
+        numeroServicios--;
     }
     
-    return true;
+    return enc;
 }

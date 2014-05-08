@@ -40,3 +40,7 @@ void tEquipoTraductor::muestraTraductores(){
         equitoTraductor[i]->muestraTraductores();
     }
 }
+
+bool tEquipoTraductor::dameServicio(){
+    return true;
+}

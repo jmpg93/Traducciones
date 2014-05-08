@@ -15,17 +15,16 @@
 
 class tTraductor{
 public:
-    tTraductor();
-    void ocupaTraductor();
-    void liberaTraductor();
-    bool dameServicio();
     
-    virtual int numeroTraductores() = 0;
-    virtual void muestraTraductores() = 0;
-    
-private:
     bool enServicio;
     
+    tTraductor();
+    virtual void ocupaTraductor();
+    virtual void liberaTraductor();
+    
+    virtual bool dameServicio() = 0;    
+    virtual int numeroTraductores() = 0;
+    virtual void muestraTraductores() = 0;
 
 };
 #endif /* defined(__Traducciones__tTraductor__) */

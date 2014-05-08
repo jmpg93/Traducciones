@@ -18,6 +18,3 @@ void tTraductor::liberaTraductor(){
 void tTraductor::ocupaTraductor(){
     enServicio = true;
 }
-bool tTraductor::dameServicio(){
-    return enServicio;
-}

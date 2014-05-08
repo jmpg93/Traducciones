@@ -11,6 +11,9 @@
 tIdioma::tIdioma(){
     lengua = "";
 }
+tIdioma::~tIdioma(){
+   lengua = "";
+}
 
 void tIdioma::ponLengua(string len){
     lengua = len;

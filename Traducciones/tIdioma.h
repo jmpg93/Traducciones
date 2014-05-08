@@ -17,6 +17,7 @@ class tIdioma{
 public:
     
     tIdioma();
+    ~tIdioma();
     
     string dameLengua();
     void ponLengua(string);

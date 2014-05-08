@@ -28,6 +28,8 @@ public:
     int numeroTraductores();
     void muestraTraductores();
     
+    bool dameServicio();
+    
 private:
     tEmpleado * equitoTraductor[3];
     int numIntegrantes;
