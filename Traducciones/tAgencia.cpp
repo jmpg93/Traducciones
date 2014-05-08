@@ -45,7 +45,7 @@ tAgencia::tAgencia(){
 
 void tAgencia::muestraMenu(){
     int opcion;
-    
+    system("clear");
     cout << "Bienvenido al sistema de traducciones" << endl;
     do {
         cout << "1. Gestionar empleados" << endl;
@@ -72,7 +72,7 @@ void tAgencia::muestraMenu(){
 
 
 void tAgencia::gestionaEmpleados(){
-    //system("cls");
+    system("clear");
     //system("clear");
     //clrscr();
     int opcion;
@@ -109,9 +109,8 @@ void tAgencia::gestionaEmpleados(){
     
 }
 void tAgencia::gestionarServicios(){
-   //system("CLS");
+    system("clear");
     int opcion;
-    bool encontrado;
     do {
         
         cout << "Gestionando servicios" << endl;
@@ -125,7 +124,7 @@ void tAgencia::gestionarServicios(){
         
         switch (opcion) {
             case 1:
-                contrataServicio();
+                if(!contrataServicio()) cout << "Error contratando nuevo servicio" << endl;
                 break;
             case 2:
                 rescindirServicio();
@@ -304,7 +303,7 @@ bool tAgencia::buscaEquipoTraductor(tIdioma iOrigen, tIdioma iDestino){
         
     }else{
         cout << "Error creando el equipo" << endl;
-    }//metodo tienen idioma comun? si = fin, no = busca idioma comun y busca nuevo empleado
+    }
     if (origen && destino && comun) enc = contrataServicio(equipo, iOrigen, iDestino);
     else cout << "Error creando el equipo" << endl;
     return enc;
@@ -343,16 +342,23 @@ tEmpleado * tAgencia::buscaUltimoEmpleado(tEquipoTraductor * equipo){
 }
 
 void tAgencia::mostrarServicios(){
-    cout << "Mostrando servicios activos:" << endl << endl;
-    for (int i = 0; i < numeroServicios; i++) {
+    if (numeroServicios == 0) {
+        cout << "No hay servicios activos" << endl;
         
-        cout << "=============================" << endl;
-        cout << "Servicio " << i + 1 << endl;
-        servicios[i]->muestraServicio();
+    }else{
+        
+        
+        cout << "Mostrando servicios activos:" << endl << endl;
+        for (int i = 0; i < numeroServicios; i++) {
+            
+            cout << "=============================" << endl;
+            cout << "Servicio " << i + 1 << endl;
+            servicios[i]->muestraServicio();
+        }
     }
 }
-void tAgencia::contrataServicio(){
-    
+bool tAgencia::contrataServicio(){
+    bool encontrado = false;
     tIdioma origen = tIdioma();
     cout << "Introduce idioma origen" << endl;
     origen.leerIdioma();
@@ -360,8 +366,9 @@ void tAgencia::contrataServicio(){
     tIdioma destino = tIdioma();
     cout << "Introduce idioma destino" << endl;
     destino.leerIdioma();
-    
-    if (!buscaTraductor(origen,destino)) buscaEquipoTraductor(origen, destino);
+    encontrado = buscaTraductor(origen,destino);
+    if (!encontrado) encontrado = buscaEquipoTraductor(origen, destino);
+    return encontrado;
 }
 
 bool tAgencia::rescindirServicio(){

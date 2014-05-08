@@ -16,6 +16,13 @@ tEmpleado::tEmpleado():tTraductor(){
     idiomas[0] = new tIdioma();
 }
 
+tEmpleado::~tEmpleado(){
+    for (int i = 0; i < idiomasHablados; i++) {
+        delete idiomas[i];
+        idiomas[i] = NULL;
+    }
+}
+
 void tEmpleado::aniadeEmpleado(){
     //num no puede ser mayor que 5
     

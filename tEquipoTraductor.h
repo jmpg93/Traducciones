@@ -15,14 +15,15 @@
 #include "tEmpleado.h"
 
 class tEquipoTraductor: public tTraductor{
+    
 public:
-    void aniadeTraductor(tEmpleado *tradu);
     tEquipoTraductor();
+    ~tEquipoTraductor();
+    void aniadeTraductor(tEmpleado *tradu);
     
     bool comparaIdiomasEquipoOrigenDestino();
     
     int dameIntegrantes();
-    
     tEmpleado * dameIntegrante(int);
     
     int numeroTraductores();

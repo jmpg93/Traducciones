@@ -24,6 +24,7 @@ public:
     
     bool comparaIdioma(tIdioma);
     void leerIdioma();
+    
 private:
     string lengua;
 

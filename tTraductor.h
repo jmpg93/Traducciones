@@ -14,9 +14,8 @@
 #include <iostream>
 
 class tTraductor{
-public:
     
-    bool enServicio;
+public:
     
     tTraductor();
     virtual void ocupaTraductor();
@@ -25,6 +24,8 @@ public:
     virtual bool dameServicio() = 0;    
     virtual int numeroTraductores() = 0;
     virtual void muestraTraductores() = 0;
+    
+    bool enServicio;
 
 };
 #endif /* defined(__Traducciones__tTraductor__) */

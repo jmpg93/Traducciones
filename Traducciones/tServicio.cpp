@@ -17,7 +17,13 @@ tServicio::tServicio(){
     idiomaDestino = *new tIdioma();
     idiomaOrigen = *new tIdioma();
 }
+
+tServicio::~tServicio(){
+    traductor = NULL;
+}
+
 void tServicio::muestraServicio(){
+    
     cout << "=============================" << endl;
     cout << "Idioma origen: " << idiomaOrigen.dameLengua() << endl;
     cout << "Idioma destino: " << idiomaDestino.dameLengua() << endl << endl;
@@ -26,6 +32,4 @@ void tServicio::muestraServicio(){
     cout << "=============================" << endl;
     cout << endl;
 }
-tServicio::~tServicio(){
-    traductor = NULL;    
-}
+

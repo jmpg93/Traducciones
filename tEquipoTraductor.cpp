@@ -13,6 +13,13 @@ tEquipoTraductor::tEquipoTraductor(){
     equitoTraductor[0] = new tEmpleado();
 }
 
+tEquipoTraductor::~tEquipoTraductor(){
+    for (int i = 0; i < numIntegrantes; i++) {
+        delete equitoTraductor[i];
+        equitoTraductor[i] = NULL;
+    }
+}
+
 void tEquipoTraductor::aniadeTraductor(tEmpleado *tradu){
     tradu->ocupaTraductor();
     equitoTraductor[numIntegrantes] = tradu;
@@ -24,9 +31,11 @@ bool tEquipoTraductor::comparaIdiomasEquipoOrigenDestino(){
     enc = equitoTraductor[0]->comparaIdiomasDeEmpleados(equitoTraductor[1]);
     return enc;
 }
+
 tEmpleado * tEquipoTraductor::dameIntegrante(int pos){
     return equitoTraductor[pos];
 }
+
 int tEquipoTraductor::dameIntegrantes(){
     return numIntegrantes;
 }

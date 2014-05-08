@@ -20,6 +20,7 @@ using namespace std;
 class tEmpleado: public tTraductor{
 public:
     tEmpleado();
+    ~tEmpleado();
         
     void ponNombre(string);
     string dameNombre();
