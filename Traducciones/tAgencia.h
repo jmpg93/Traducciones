@@ -22,6 +22,15 @@ public:
     tAgencia();
     void muestraMenu();
     
+    
+private:
+    
+    tEmpleado * empleados[100];
+    tServicio * servicios[10];
+    
+    int numeroEmpleados;
+    int numeroServicios;
+    
     void gestionaEmpleados();
     void gestionarServicios();
     
@@ -34,6 +43,7 @@ public:
     
     bool buscaTraductor(tIdioma, tIdioma);
     bool buscaEquipoTraductor(tIdioma, tIdioma);
+    tEmpleado * buscaUltimoEmpleado(tEquipoTraductor *);
     
     bool contrataServicio(tTraductor*, tIdioma, tIdioma);
     bool contrataServicio();
@@ -41,15 +51,8 @@ public:
     bool rescindirServicio();
     void mostrarServicios();
     
-    tEmpleado * buscaUltimoEmpleado(tEquipoTraductor *);
+    
 
-    
-private:
-    tEmpleado * empleados[100];
-    tServicio * servicios[10];
-    
-    int numeroEmpleados;
-    int numeroServicios;
 };
 
 #endif /* defined(__Traducciones__tAgencia__) */

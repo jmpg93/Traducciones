@@ -150,6 +150,7 @@ void tAgencia::contratarEmpleado(){
     }
     empleados[numeroEmpleados]->aniadeEmpleado();
     numeroEmpleados++;
+    
     if(guardaListaEmpleados()){
         cout << "Empleado contratado correctamente" << endl;
     }else cout << "Error contratando" << endl;

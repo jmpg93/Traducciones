@@ -25,7 +25,6 @@ public:
     void ponNombre(string);
     string dameNombre();
     
-    void ponIdiomas();
     tIdioma * dameIdioma(int);
     int dameIdiomasHablados();
     
